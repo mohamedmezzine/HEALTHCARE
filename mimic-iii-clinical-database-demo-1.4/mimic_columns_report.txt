@@ -1,0 +1,910 @@
+Found 26 CSV files
+================================================================================
+FILE: ADMISSIONS.csv
+--------------------------------------------------------------------------------
+Number of columns: 19
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - admittime
+  - dischtime
+  - deathtime
+  - admission_type
+  - admission_location
+  - discharge_location
+  - insurance
+  - language
+  - religion
+  - marital_status
+  - ethnicity
+  - edregtime
+  - edouttime
+  - diagnosis
+  - hospital_expire_flag
+  - has_chartevents_data
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  admittime: object
+  dischtime: object
+  deathtime: object
+  admission_type: object
+  admission_location: object
+  discharge_location: object
+  insurance: object
+  language: object
+  religion: object
+  marital_status: object
+  ethnicity: object
+  edregtime: object
+  edouttime: object
+  diagnosis: object
+  hospital_expire_flag: int64
+  has_chartevents_data: int64
+
+================================================================================
+
+FILE: CALLOUT.csv
+--------------------------------------------------------------------------------
+Number of columns: 24
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - submit_wardid
+  - submit_careunit
+  - curr_wardid
+  - curr_careunit
+  - callout_wardid
+  - callout_service
+  - request_tele
+  - request_resp
+  - request_cdiff
+  - request_mrsa
+  - request_vre
+  - callout_status
+  - callout_outcome
+  - discharge_wardid
+  - acknowledge_status
+  - createtime
+  - updatetime
+  - acknowledgetime
+  - outcometime
+  - firstreservationtime
+  - currentreservationtime
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  submit_wardid: int64
+  submit_careunit: object
+  curr_wardid: int64
+  curr_careunit: object
+  callout_wardid: int64
+  callout_service: object
+  request_tele: int64
+  request_resp: int64
+  request_cdiff: int64
+  request_mrsa: int64
+  request_vre: int64
+  callout_status: object
+  callout_outcome: object
+  discharge_wardid: float64
+  acknowledge_status: object
+  createtime: object
+  updatetime: object
+  acknowledgetime: object
+  outcometime: object
+  firstreservationtime: object
+  currentreservationtime: object
+
+================================================================================
+
+FILE: CAREGIVERS.csv
+--------------------------------------------------------------------------------
+Number of columns: 4
+
+COLUMNS:
+  - row_id
+  - cgid
+  - label
+  - description
+
+DTYPES:
+  row_id: int64
+  cgid: int64
+  label: object
+  description: object
+
+================================================================================
+
+FILE: CHARTEVENTS.csv
+--------------------------------------------------------------------------------
+Number of columns: 15
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - itemid
+  - charttime
+  - storetime
+  - cgid
+  - value
+  - valuenum
+  - valueuom
+  - warning
+  - error
+  - resultstatus
+  - stopped
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: int64
+  itemid: int64
+  charttime: object
+  storetime: object
+  cgid: int64
+  value: float64
+  valuenum: float64
+  valueuom: object
+  warning: int64
+  error: int64
+  resultstatus: float64
+  stopped: float64
+
+================================================================================
+
+FILE: CPTEVENTS.csv
+--------------------------------------------------------------------------------
+Number of columns: 12
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - costcenter
+  - chartdate
+  - cpt_cd
+  - cpt_number
+  - cpt_suffix
+  - ticket_id_seq
+  - sectionheader
+  - subsectionheader
+  - description
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  costcenter: object
+  chartdate: float64
+  cpt_cd: int64
+  cpt_number: int64
+  cpt_suffix: float64
+  ticket_id_seq: int64
+  sectionheader: object
+  subsectionheader: object
+  description: float64
+
+================================================================================
+
+FILE: D_CPT.csv
+--------------------------------------------------------------------------------
+Number of columns: 9
+
+COLUMNS:
+  - row_id
+  - category
+  - sectionrange
+  - sectionheader
+  - subsectionrange
+  - subsectionheader
+  - codesuffix
+  - mincodeinsubsection
+  - maxcodeinsubsection
+
+DTYPES:
+  row_id: int64
+  category: int64
+  sectionrange: object
+  sectionheader: object
+  subsectionrange: object
+  subsectionheader: object
+  codesuffix: float64
+  mincodeinsubsection: int64
+  maxcodeinsubsection: int64
+
+================================================================================
+
+FILE: D_ICD_DIAGNOSES.csv
+--------------------------------------------------------------------------------
+Number of columns: 4
+
+COLUMNS:
+  - row_id
+  - icd9_code
+  - short_title
+  - long_title
+
+DTYPES:
+  row_id: int64
+  icd9_code: int64
+  short_title: object
+  long_title: object
+
+================================================================================
+
+FILE: D_ICD_PROCEDURES.csv
+--------------------------------------------------------------------------------
+Number of columns: 4
+
+COLUMNS:
+  - row_id
+  - icd9_code
+  - short_title
+  - long_title
+
+DTYPES:
+  row_id: int64
+  icd9_code: int64
+  short_title: object
+  long_title: object
+
+================================================================================
+
+FILE: D_ITEMS.csv
+--------------------------------------------------------------------------------
+Number of columns: 10
+
+COLUMNS:
+  - row_id
+  - itemid
+  - label
+  - abbreviation
+  - dbsource
+  - linksto
+  - category
+  - unitname
+  - param_type
+  - conceptid
+
+DTYPES:
+  row_id: int64
+  itemid: int64
+  label: object
+  abbreviation: float64
+  dbsource: object
+  linksto: object
+  category: float64
+  unitname: float64
+  param_type: float64
+  conceptid: float64
+
+================================================================================
+
+FILE: D_LABITEMS.csv
+--------------------------------------------------------------------------------
+Number of columns: 6
+
+COLUMNS:
+  - row_id
+  - itemid
+  - label
+  - fluid
+  - category
+  - loinc_code
+
+DTYPES:
+  row_id: int64
+  itemid: int64
+  label: object
+  fluid: object
+  category: object
+  loinc_code: object
+
+================================================================================
+
+FILE: DATETIMEEVENTS.csv
+--------------------------------------------------------------------------------
+Number of columns: 14
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - itemid
+  - charttime
+  - storetime
+  - cgid
+  - value
+  - valueuom
+  - warning
+  - error
+  - resultstatus
+  - stopped
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: int64
+  itemid: int64
+  charttime: object
+  storetime: object
+  cgid: int64
+  value: object
+  valueuom: object
+  warning: float64
+  error: float64
+  resultstatus: float64
+  stopped: object
+
+================================================================================
+
+FILE: DIAGNOSES_ICD.csv
+--------------------------------------------------------------------------------
+Number of columns: 5
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - seq_num
+  - icd9_code
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  seq_num: int64
+  icd9_code: object
+
+================================================================================
+
+FILE: DRGCODES.csv
+--------------------------------------------------------------------------------
+Number of columns: 8
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - drg_type
+  - drg_code
+  - description
+  - drg_severity
+  - drg_mortality
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  drg_type: object
+  drg_code: int64
+  description: object
+  drg_severity: float64
+  drg_mortality: float64
+
+================================================================================
+
+FILE: ICUSTAYS.csv
+--------------------------------------------------------------------------------
+Number of columns: 12
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - dbsource
+  - first_careunit
+  - last_careunit
+  - first_wardid
+  - last_wardid
+  - intime
+  - outtime
+  - los
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: int64
+  dbsource: object
+  first_careunit: object
+  last_careunit: object
+  first_wardid: int64
+  last_wardid: int64
+  intime: object
+  outtime: object
+  los: float64
+
+================================================================================
+
+FILE: INPUTEVENTS_CV.csv
+--------------------------------------------------------------------------------
+Number of columns: 22
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - charttime
+  - itemid
+  - amount
+  - amountuom
+  - rate
+  - rateuom
+  - storetime
+  - cgid
+  - orderid
+  - linkorderid
+  - stopped
+  - newbottle
+  - originalamount
+  - originalamountuom
+  - originalroute
+  - originalrate
+  - originalrateuom
+  - originalsite
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: int64
+  charttime: object
+  itemid: int64
+  amount: float64
+  amountuom: object
+  rate: float64
+  rateuom: float64
+  storetime: object
+  cgid: int64
+  orderid: int64
+  linkorderid: int64
+  stopped: object
+  newbottle: float64
+  originalamount: float64
+  originalamountuom: object
+  originalroute: object
+  originalrate: float64
+  originalrateuom: float64
+  originalsite: float64
+
+================================================================================
+
+FILE: INPUTEVENTS_MV.csv
+--------------------------------------------------------------------------------
+Number of columns: 31
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - starttime
+  - endtime
+  - itemid
+  - amount
+  - amountuom
+  - rate
+  - rateuom
+  - storetime
+  - cgid
+  - orderid
+  - linkorderid
+  - ordercategoryname
+  - secondaryordercategoryname
+  - ordercomponenttypedescription
+  - ordercategorydescription
+  - patientweight
+  - totalamount
+  - totalamountuom
+  - isopenbag
+  - continueinnextdept
+  - cancelreason
+  - statusdescription
+  - comments_editedby
+  - comments_canceledby
+  - comments_date
+  - originalamount
+  - originalrate
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: int64
+  starttime: object
+  endtime: object
+  itemid: int64
+  amount: float64
+  amountuom: object
+  rate: float64
+  rateuom: object
+  storetime: object
+  cgid: int64
+  orderid: int64
+  linkorderid: int64
+  ordercategoryname: object
+  secondaryordercategoryname: object
+  ordercomponenttypedescription: object
+  ordercategorydescription: object
+  patientweight: int64
+  totalamount: float64
+  totalamountuom: object
+  isopenbag: int64
+  continueinnextdept: int64
+  cancelreason: int64
+  statusdescription: object
+  comments_editedby: object
+  comments_canceledby: object
+  comments_date: object
+  originalamount: float64
+  originalrate: float64
+
+================================================================================
+
+FILE: LABEVENTS.csv
+--------------------------------------------------------------------------------
+Number of columns: 9
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - itemid
+  - charttime
+  - value
+  - valuenum
+  - valueuom
+  - flag
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: float64
+  itemid: int64
+  charttime: object
+  value: object
+  valuenum: float64
+  valueuom: object
+  flag: object
+
+================================================================================
+
+FILE: MICROBIOLOGYEVENTS.csv
+--------------------------------------------------------------------------------
+Number of columns: 16
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - chartdate
+  - charttime
+  - spec_itemid
+  - spec_type_desc
+  - org_itemid
+  - org_name
+  - isolate_num
+  - ab_itemid
+  - ab_name
+  - dilution_text
+  - dilution_comparison
+  - dilution_value
+  - interpretation
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  chartdate: object
+  charttime: object
+  spec_itemid: int64
+  spec_type_desc: object
+  org_itemid: float64
+  org_name: object
+  isolate_num: float64
+  ab_itemid: float64
+  ab_name: object
+  dilution_text: object
+  dilution_comparison: object
+  dilution_value: float64
+  interpretation: object
+
+================================================================================
+
+FILE: NOTEEVENTS.csv
+--------------------------------------------------------------------------------
+Number of columns: 11
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - chartdate
+  - charttime
+  - storetime
+  - category
+  - description
+  - cgid
+  - iserror
+  - text
+
+DTYPES:
+  row_id: object
+  subject_id: object
+  hadm_id: object
+  chartdate: object
+  charttime: object
+  storetime: object
+  category: object
+  description: object
+  cgid: object
+  iserror: object
+  text: object
+
+================================================================================
+
+FILE: OUTPUTEVENTS.csv
+--------------------------------------------------------------------------------
+Number of columns: 13
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - charttime
+  - itemid
+  - value
+  - valueuom
+  - storetime
+  - cgid
+  - stopped
+  - newbottle
+  - iserror
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: int64
+  charttime: object
+  itemid: int64
+  value: int64
+  valueuom: object
+  storetime: object
+  cgid: int64
+  stopped: float64
+  newbottle: float64
+  iserror: float64
+
+================================================================================
+
+FILE: PATIENTS.csv
+--------------------------------------------------------------------------------
+Number of columns: 8
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - gender
+  - dob
+  - dod
+  - dod_hosp
+  - dod_ssn
+  - expire_flag
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  gender: object
+  dob: object
+  dod: object
+  dod_hosp: object
+  dod_ssn: object
+  expire_flag: int64
+
+================================================================================
+
+FILE: PRESCRIPTIONS.csv
+--------------------------------------------------------------------------------
+Number of columns: 19
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - startdate
+  - enddate
+  - drug_type
+  - drug
+  - drug_name_poe
+  - drug_name_generic
+  - formulary_drug_cd
+  - gsn
+  - ndc
+  - prod_strength
+  - dose_val_rx
+  - dose_unit_rx
+  - form_val_disp
+  - form_unit_disp
+  - route
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: float64
+  startdate: object
+  enddate: object
+  drug_type: object
+  drug: object
+  drug_name_poe: object
+  drug_name_generic: object
+  formulary_drug_cd: object
+  gsn: float64
+  ndc: int64
+  prod_strength: object
+  dose_val_rx: object
+  dose_unit_rx: object
+  form_val_disp: object
+  form_unit_disp: object
+  route: object
+
+================================================================================
+
+FILE: PROCEDUREEVENTS_MV.csv
+--------------------------------------------------------------------------------
+Number of columns: 25
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - starttime
+  - endtime
+  - itemid
+  - value
+  - valueuom
+  - location
+  - locationcategory
+  - storetime
+  - cgid
+  - orderid
+  - linkorderid
+  - ordercategoryname
+  - secondaryordercategoryname
+  - ordercategorydescription
+  - isopenbag
+  - continueinnextdept
+  - cancelreason
+  - statusdescription
+  - comments_editedby
+  - comments_canceledby
+  - comments_date
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: int64
+  starttime: object
+  endtime: object
+  itemid: int64
+  value: int64
+  valueuom: object
+  location: object
+  locationcategory: object
+  storetime: object
+  cgid: int64
+  orderid: int64
+  linkorderid: int64
+  ordercategoryname: object
+  secondaryordercategoryname: float64
+  ordercategorydescription: object
+  isopenbag: int64
+  continueinnextdept: int64
+  cancelreason: int64
+  statusdescription: object
+  comments_editedby: float64
+  comments_canceledby: object
+  comments_date: object
+
+================================================================================
+
+FILE: PROCEDURES_ICD.csv
+--------------------------------------------------------------------------------
+Number of columns: 5
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - seq_num
+  - icd9_code
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  seq_num: int64
+  icd9_code: int64
+
+================================================================================
+
+FILE: SERVICES.csv
+--------------------------------------------------------------------------------
+Number of columns: 6
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - transfertime
+  - prev_service
+  - curr_service
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  transfertime: object
+  prev_service: object
+  curr_service: object
+
+================================================================================
+
+FILE: TRANSFERS.csv
+--------------------------------------------------------------------------------
+Number of columns: 13
+
+COLUMNS:
+  - row_id
+  - subject_id
+  - hadm_id
+  - icustay_id
+  - dbsource
+  - eventtype
+  - prev_careunit
+  - curr_careunit
+  - prev_wardid
+  - curr_wardid
+  - intime
+  - outtime
+  - los
+
+DTYPES:
+  row_id: int64
+  subject_id: int64
+  hadm_id: int64
+  icustay_id: float64
+  dbsource: object
+  eventtype: object
+  prev_careunit: object
+  curr_careunit: object
+  prev_wardid: float64
+  curr_wardid: float64
+  intime: object
+  outtime: object
+  los: float64
+
+================================================================================
+

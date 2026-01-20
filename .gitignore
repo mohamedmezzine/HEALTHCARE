@@ -1,0 +1,23 @@
+# Data and generated artifacts
+data/**
+artifacts/**
+!data/.gitkeep
+!artifacts/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# IDEs
+.idea/
+.vscode/
+
