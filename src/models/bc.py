@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 
 class BCNetwork(nn.Module):
     def __init__(self, input_dim: int, num_actions: int, hidden_dim: int = 256):
@@ -33,7 +33,8 @@ class BCAgent:
         num_actions: int,
         lr: float = 1e-3,
         hidden_dim: int = 256,
-        device: str = "cpu"
+        device: str = "cpu",
+        class_weights: Optional[Union[np.ndarray, torch.Tensor]] = None
     ):
         self.state_dim = state_dim
         self.num_actions = num_actions
@@ -41,7 +42,15 @@ class BCAgent:
 
         self.model = BCNetwork(state_dim, num_actions, hidden_dim).to(device)
         self.optimizer = optim.Adam(self.model.parameters(), lr=lr)
-        self.criterion = nn.CrossEntropyLoss()
+
+        # Initialize Loss with weights if provided
+        if class_weights is not None:
+            if not isinstance(class_weights, torch.Tensor):
+                class_weights = torch.FloatTensor(class_weights)
+            class_weights = class_weights.to(device)
+            self.criterion = nn.CrossEntropyLoss(weight=class_weights)
+        else:
+            self.criterion = nn.CrossEntropyLoss()
 
     def train_step(self, states, actions):
         """

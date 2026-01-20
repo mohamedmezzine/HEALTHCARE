@@ -14,10 +14,6 @@ def load_dataset(path):
     df = pd.read_parquet(path)
 
     # Extract columns
-    # Assuming 'state' columns are all columns except metadata/action/reward/next
-    # We rely on specific naming or exclusion.
-    # The dataset builder puts features in columns.
-
     meta_cols = {'icustay_id', 'hour', 'action', 'reward', 'done', 'survived', 'hour_start', 'hour_end'}
     next_cols = [c for c in df.columns if c.endswith('_next')]
     feature_cols = [c for c in df.columns if c not in meta_cols and c not in next_cols]
@@ -28,11 +24,55 @@ def load_dataset(path):
     next_states = df[next_cols].values.astype(np.float32)
     dones = df['done'].values.astype(np.float32)
 
-    # Handle NaNs in next_states (terminal states)
-    # We can fill them with 0s since they shouldn't be used in update when done=1
+    # Handle NaNs in next_states
     next_states = np.nan_to_num(next_states)
 
     return states, actions, rewards, next_states, dones, feature_cols
+
+def compute_class_weights(actions, num_actions):
+    """Compute inverse frequency weights."""
+    counts = np.bincount(actions, minlength=num_actions)
+    total = len(actions)
+    # Weights = total / (num_classes * count)
+    # Add epsilon to avoid div by zero if a class is empty
+    weights = total / (num_actions * (counts + 1e-6))
+    return weights
+
+class BalancedBatchSampler:
+    """Samples batches ensuring representation from all classes."""
+    def __init__(self, actions, batch_size):
+        self.actions = actions
+        self.batch_size = batch_size
+        self.num_actions = len(np.unique(actions))
+        if self.num_actions < 4: self.num_actions = 4
+
+        # Store indices for each action
+        self.indices_by_action = {}
+        for a in range(self.num_actions):
+            self.indices_by_action[a] = np.where(actions == a)[0]
+
+    def sample(self):
+        # We want approx equal number of samples per class in the batch
+        # But some classes might be empty in the whole dataset (unlikely here but possible)
+        # Assuming we want to force mix.
+
+        samples_per_class = self.batch_size // self.num_actions
+        batch_indices = []
+
+        for a in range(self.num_actions):
+            indices = self.indices_by_action[a]
+            if len(indices) > 0:
+                selected = np.random.choice(indices, samples_per_class, replace=True)
+                batch_indices.extend(selected)
+
+        # Fill remaining spots if any (due to integer division)
+        remaining = self.batch_size - len(batch_indices)
+        if remaining > 0:
+            extra = np.random.choice(np.arange(len(self.actions)), remaining)
+            batch_indices.extend(extra)
+
+        np.random.shuffle(batch_indices)
+        return np.array(batch_indices)
 
 def train_bc(train_data, val_data, args):
     print("\nTraining BC Agent...")
@@ -40,12 +80,23 @@ def train_bc(train_data, val_data, args):
     val_states, val_actions, _, _, _, _ = val_data
 
     state_dim = states.shape[1]
-    num_actions = len(np.unique(actions))
+    # Ensure num_actions is at least 4 for MIMIC vasopressors
+    num_actions = 4
 
-    agent = BCAgent(state_dim, num_actions, device=args.device, lr=1e-3)
+    # Compute weights
+    class_weights = compute_class_weights(actions, num_actions)
+    print(f"Class weights: {class_weights}")
+
+    agent = BCAgent(
+        state_dim,
+        num_actions,
+        device=args.device,
+        lr=1e-3,
+        class_weights=class_weights
+    )
 
     batch_size = 64
-    num_epochs = 10  # Quick training
+    num_epochs = 10
 
     dataset = torch.utils.data.TensorDataset(
         torch.FloatTensor(states), torch.LongTensor(actions)
@@ -72,22 +123,20 @@ def train_dqn(train_data, val_data, args):
     val_states, val_actions, val_rewards, _, _, _ = val_data
 
     state_dim = states.shape[1]
-    num_actions = len(np.unique(actions)) # Assuming all actions present
-    if num_actions < 4: num_actions = 4 # Force known action space size
+    num_actions = 4
 
     agent = DQNAgent(state_dim, num_actions, device=args.device, lr=3e-4)
 
     batch_size = 64
-    num_steps = 5000 # Number of updates
+    num_steps = 5000
 
-    # Simple replay buffer: just sample from dataset
-    indices = np.arange(len(states))
+    sampler = BalancedBatchSampler(actions, batch_size)
 
     pbar = tqdm(range(num_steps))
     losses = []
 
     for step in pbar:
-        batch_idx = np.random.choice(indices, batch_size)
+        batch_idx = sampler.sample()
 
         b_states = states[batch_idx]
         b_actions = actions[batch_idx]
